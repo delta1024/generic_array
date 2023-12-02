@@ -1,4 +1,4 @@
-#include "array.h"
+#include "generic_array.h"
 #include <stdlib.h>
 #include <stdint.h>
 
