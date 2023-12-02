@@ -61,7 +61,11 @@ void *array_set_capacity(void *array, int capacity, size_t span){
   new_header->capacity = capacity;
   return (void*)(new_header + 1);
 }
-
+void *array_reset(void *array) {
+    array_header_t *header = ((array_header_t*)array) - 1;
+    header = realloc(header, sizeof(array_header_t));
+    return (void*)(header + 1);
+}
 void array_free(void *array){
   array_header_t *header = ((array_header_t*)array) - 1;
   free(header);
