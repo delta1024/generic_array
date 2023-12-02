@@ -10,9 +10,9 @@ pub fn build(b: *std.Build) void {
         .link_libc = true,
     });
 
+    lib.installHeader("generic_array.h", "generic_array.h");
     b.installArtifact(lib);
-    const header = b.addInstallHeaderFile("generic_array.h", "generic_array.h");
-    lib.step.dependOn(&header.step);
+
     const clean_step = b.step("clean", "clean build dir");
     for ([_][]const u8{
         "zig-out",
