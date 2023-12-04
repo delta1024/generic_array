@@ -1,6 +1,31 @@
 # A Generic Array for c.
+## Example Usage
+
+```c
+#include <stdint.h>
+#include <stdio.h>
+#include <generic_array.h>
+
+#define PUSH(arr, val)                                     \
+	(arr) = array_adjust_for_push((arr), sizeof(uint8_t)); \
+	((arr)[array_push((arr))] = (val))
+
+#define POP(arr) ((arr)[array_pop((arr))])
+
+int main() {
+	uint8_t *barray = array_initialize();
+	PUSH(barray, 22);
+	printf("%d\n", POP(barray));
+	array_free(barray);
+}
+```
 
 ## Build Dependencies
+ - git (for download)
+ - c compiler
+ - zig (altertatie).
+## Instalation
+### Make
 Cone the repository by running 
 ```bash
 git clone https://github.com/delta1024/generic_array.git <destination directory>
@@ -12,7 +37,7 @@ make
 cp libgeneric_array.a <project directory>
 ```
 
-### Makefile properties
+##### Makefile properties
 
 ```
 commands:
@@ -47,7 +72,8 @@ All variables can be customized by adding them to the make command like so:
 make TARGET=new_target
 ```
 
-## Instalation
+
+### Zig
 add the folowing to your build.zig.zon file: 
 ```zig
 .{
@@ -86,18 +112,3 @@ pub fn build(b: *std.Build) void {
 ```
 
 
-## Example Usage
-
-```c
-#include <generic_array.h>
-#include <stdint.h>
-#include <stdio.h>
-
-int main() {
-	uint8_t *barray = array_initialize();
-	barray = array_adjust_for_push(barray, sizeof(uint8_t));
-	barray[array_push(barray)] = 22;
-	printf("%d\n", barray[array_pop(barray)]);
-	array_free(barray);
-}
-```
