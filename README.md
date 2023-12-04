@@ -95,7 +95,7 @@ pub fn build(b: *std.Build) void {
 
 int main() {
 	uint8_t *barray = array_initialize();
-	barray = *array_adjust_for_push(barray, sizeof(uint8_t));
+	barray = array_adjust_for_push(barray, sizeof(uint8_t));
 	barray[array_push(barray)] = 22;
 	printf("%d\n", barray[array_pop(barray)]);
 	array_free(barray);
