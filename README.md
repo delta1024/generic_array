@@ -1,10 +1,12 @@
 # A Generic Array for c.
 
+## Build Dependencies
+TODO: add instalation instructions for non zig build systems.
 ## Instalation
 add the folowing to your build.zig.zon file: 
-```ziglang
+```zig
 .{
-	// Rest of your bulid.zig.zon file.
+    // Rest of your bulid.zig.zon file.
     .dependencies = .{
         .generic_array = .{
             .url = "https://github.com/delta1024/generic_array/archive/refs/tags/0.1.0.tar.gz",
@@ -15,7 +17,7 @@ add the folowing to your build.zig.zon file:
 ```
 
 your build.zig might look something like this.
-```ziglang
+```zig
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
@@ -39,4 +41,18 @@ pub fn build(b: *std.Build) void {
 ```
 
 
+## Example Usage
 
+```c
+#include <generic_array.h>
+#include <stdint.h>
+#include <stdio.h>
+
+int main() {
+	uint8_t *barray = array_initialize();
+	barray = *array_adjust_for_push(barray, sizeof(uint8_t));
+	barray[array_push(barray)] = 22;
+	printf("%d\n", barray[array_pop(barray)]);
+	array_free(barray);
+}
+```
