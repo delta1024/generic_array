@@ -1,7 +1,52 @@
 # A Generic Array for c.
 
 ## Build Dependencies
-TODO: add instalation instructions for non zig build systems.
+Cone the repository by running 
+```bash
+git clone https://github.com/delta1024/generic_array.git <destination directory>
+```
+Build the project by running
+```bash
+cd <destination directory>
+make
+cp libgeneric_array.a <project directory>
+```
+
+### Makefile properties
+
+```
+commands:
+	all:         Build ./libgeneric_array.a
+
+	sharedlib:   Build libraray as a shared library instead of a static one.
+
+	install:     Install ./libgeneric_array.so to /usr/local/lib and
+		     ./generic_array.h to /usr/local/include.
+
+	uninstall:   Remove /usr/local/lib/libgeneric_array.so and
+	             /usr/local/include/generic_array.h.
+
+	clean:	     Remove all .o files from build directory.
+
+	distclean:   Remove all .o .so and .a files from build directory.
+
+variables:
+	TARGET     = "libgeneric_array"
+	SHELL      = "/bin/sh"
+	CC         = "cc"
+	AR         = "ar"
+	prefix     = "/usr/local"
+	includedir = "/usr/local/include"
+	libdir     = "/usr/local/lib"
+	srcdir     = "."
+
+```
+
+All variables can be customized by adding them to the make command like so:
+```bash
+make TARGET=new_target
+```
+
 ## Instalation
 add the folowing to your build.zig.zon file: 
 ```zig
