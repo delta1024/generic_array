@@ -1,2 +1,5 @@
 /zig-cache/
 /zig-out/
+/array.o
+/libgeneric_array.a
+/libgeneric_array.so
